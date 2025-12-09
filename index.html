@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Историко-культурное возрождение сказок Церетели</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c5530; /* Зеленый цвет, связанный с природой Сочи */
+            --secondary: #d4af37; /* Золотой - цвет смальты и искусства */
+            --accent: #8b4513; /* Коричневый - земляной тон */
+            --light: #f5f1e6; /* Светлый бежевый фон */
+            --dark: #1a1a1a; /* Темный текст */
+            --gray: #6c757d; /* Серый для второстепенного текста */
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, var(--primary), #3a7041);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: white;
+            padding: 5px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 85, 48, 0.8), rgba(44, 85, 48, 0.9)), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #e6c34c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        section:nth-child(even) {
+            background-color: #f9f7f1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .gallery-nav button {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-nav button:hover {
+            background-color: white;
+            color: var(--dark);
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .thumb {
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .thumb.active, .thumb:hover {
+            opacity: 1;
+            border-color: var(--secondary);
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Project Info */
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: var(--secondary);
+        }
+
+        /* Goals */
+        .goals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .goal-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 5px solid var(--secondary);
+        }
+
+        .goal-card .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Materials */
+        .materials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .material-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .material-icon {
+            background-color: var(--primary);
+            color: white;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .material-content {
+            padding: 1.5rem;
+        }
+
+        .material-content h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .gallery-thumbs {
+                gap: 8px;
+            }
+            
+            .thumb {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background-color: var(--primary);
+                transition: var(--transition);
+                padding: 2rem;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .slide img {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .slide img {
+                height: 250px;
+            }
+            
+            .gallery-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .thumb {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/1998/1998678.png" alt="Арт-код Сочи">
+                <h1>Арт-код Сочи</h1>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#about">О проекте</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#goals">Цели</a></li>
+                    <li><a href="#materials">Материалы</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Историко-культурное возрождение сказок Церетели</h2>
+            <p>Проект по сохранению и популяризации мозаичных комплексов Зураба Церетели в Сочи: «Рыбки» и «Коралловый риф» - объектов культурного наследия, удостоенных Ленинской премии</p>
+            <a href="#about" class="btn">Узнать больше</a>
+        </div>
+    </section>
+
+    <!-- About Project -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">О проекте</h2>
+            <div class="project-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-history"></i> Проблема</h3>
+                    <p>Мозаичные комплексы «Рыбки» (1973 г.) и «Коралловый риф» находятся в запустении: смальтовая мозаика осыпается, территория заросла. Последняя реставрация проводилась более 20 лет назад, что приводит к потере уникального культурного достояния.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-bullseye"></i> Целевая аудитория</h3>
+                    <p>Молодёжь города Сочи в возрасте 17-25 лет, студенты художественных и гуманитарных направлений, а также все, кто интересуется сохранением культурного наследия и монументальным искусством.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-university"></i> Для вуза</h3>
+                    <p>Проект предоставляет возможности для студентов: дизайнеры - разработка арт-альбома, ДПИ - создание мозаичного панно, ландшафтники - проекты благоустройства, историки - исследовательские работы, участие в международном конкурсе архитектурных проектов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Работы Зураба Церетели в Сочи</h2>
+            <p style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">Мозаичные комплексы «Рыбки» и «Коралловый риф» созданы в 1973 году, площадь 860 м², удостоены Ленинской премии в 1975 году за вклад в санаторный комплекс Адлера.</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-slider" id="gallerySlider">
+                    <!-- Slides will be inserted here by JavaScript -->
+                </div>
+                
+                <div class="gallery-nav">
+                    <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="slide-info" id="slideInfo"></div>
+            </div>
+            
+            <div class="gallery-thumbs" id="galleryThumbs">
+                <!-- Thumbnails will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals -->
+    <section id="goals">
+        <div class="container">
+            <h2 class="section-title">Цели проекта по SMART</h2>
+            <div class="goals-container">
+                <div class="goal-card">
+                    <div class="number">8</div>
+                    <h3>Лекций</h3>
+                    <p>Проведение 4 лекций в Сочи и 4 в московском РУДН к апрелю 2026 года</p>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="number">780</div>
+                    <h3>Студентов</h3>
+                    <p>Вовлечение около 780 студентов через лекции, экскурсии и викторины</p>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="number">4</div>
+                    <h3>Экскурсии</h3>
+                    <p>Организация 4 экскурсий на объекты «Рыбки» и «Коралловый риф»</p>
+                </div>
+                
+                <div class="goal-card">
+                    <div class="number">60%</div>
+                    <h3>Рост интереса</h3>
+                    <p>Повышение интереса к междунациональным объектам культуры на 60%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials -->
+    <section id="materials">
+        <div class="container">
+            <h2 class="section-title">Материалы проекта</h2>
+            <div class="materials-container">
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="material-content">
+                        <h4>Онлайн-база данных</h4>
+                        <p>Фото, биография, описания объектов культурного наследия Церетели в Сочи с историческими справками и архивными материалами.</p>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <div class="material-content">
+                        <h4>3D-туры</h4>
+                        <p>Виртуальные туры по работам Церетели для удалённого доступа широкой аудитории к объектам культурного наследия.</p>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="material-content">
+                        <h4>Викторины</h4>
+                        <p>Интерактивные викторины для проверки знаний о творчестве Зураба Церетели и его работах в Сочи.</p>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="material-content">
+                        <h4>Видеоматериалы</h4>
+                        <p>Видеофильмы, подкасты, записи лекций о творчестве Церетели и процессе реставрации его работ.</p>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="material-content">
+                        <h4>Арт-альбом</h4>
+                        <p>Типографический материал с высококачественными изображениями и описаниями работ Церетели в Сочи.</p>
+                    </div>
+                </div>
+                
+                <div class="material-card">
+                    <div class="material-icon">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <div class="material-content">
+                        <h4>3D-наклейки</h4>
+                        <p>Стикеры с изображениями работ Церетели для популяризации искусства среди молодёжи.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Арт-код Сочи</h3>
+                    <p>Проект по сохранению культурного наследия Зураба Церетели в Сочи. Возрождение сказочных мозаик для будущих поколений.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Быстрые ссылки</h4>
+                    <ul>
+                        <li><a href="#about">О проекте</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                        <li><a href="#goals">Цели проекта</a></li>
+                        <li><a href="#materials">Материалы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Контакты</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Сочи, Курортный городок</p>
+                    <p><i class="fas fa-envelope"></i> artcode.sochi@example.com</p>
+                    <p><i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="color: white; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-vk"></i></a>
+                        <a href="#" style="color: white; margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-telegram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Проект "Историко-культурное возрождение сказок Церетели". Все права защищены.</p>
+                <p>Данный сайт создан для подачи заявки на грант.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Gallery data from your provided HTML
+        const galleryData = [
+            {
+                src: "https://optim.tildacdn.com/tild6239-6138-4161-b565-313361356165/-/contain/960x720/center/center/-/format/webp/photo_2025-07-31_19-.jpg.webp",
+                title: "Мозаика Церетели",
+                desc: "Фрагмент мозаичного комплекса"
+            },
+            {
+                src: "https://optim.tildacdn.com/tild6263-3134-4839-a338-656665336338/-/contain/960x720/center/center/-/format/webp/b-7725.jpg.webp",
+                title: "Работа «Рыбки»",
+                desc: "Мозаичный комплекс 1973 года, площадь 860 м²"
+            },
+            {
+                src: "https://optim.tildacdn.com/tild3731-6637-4439-a336-653363623534/-/contain/960x720/center/center/-/format/webp/_.png.webp",
+                title: "Деталь мозаики",
+                desc: "Смальтовая мозаика венгерского производства"
+            },
+            {
+                src: "https://optim.tildacdn.com/tild3537-3738-4431-b638-666430386230/-/contain/960x720/center/center/-/format/webp/_2.png.webp",
+                title: "«Коралловый риф»",
+                desc: "Мозаичный комплекс 1973 года, Ленинская премия 1975 г."
+            },
+            {
+                src: "https://optim.tildacdn.com/tild6230-6639-4534-b763-323763366431/-/contain/960x720/center/center/-/format/webp/photo.png.webp",
+                title: "Арт-объект Церетели",
+                desc: "Пример постмодернизма в советском монументализме"
+            },
+            {
+                src: "https://optim.tildacdn.com/tild6463-6536-4438-b832-636336396562/-/contain/960x720/center/center/-/format/webp/photo_2025-07-31_19-.jpg.webp",
+                title: "Состояние объекта",
+                desc: "Требуется срочная реставрация мозаичного покрытия"
+            }
+        ];
+        
+        // Initialize gallery
+        const gallerySlider = document.getElementById('gallerySlider');
+        const galleryThumbs = document.getElementById('galleryThumbs');
+        const slideInfo = document.getElementById('slideInfo');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let currentSlide = 0;
+        
+        // Create slides and thumbnails
+        galleryData.forEach((item, index) => {
+            // Create slide
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            slide.innerHTML = `<img src="${item.src}" alt="${item.title}">`;
+            gallerySlider.appendChild(slide);
+            
+            // Create thumbnail
+            const thumb = document.createElement('div');
+            thumb.className = `thumb ${index === 0 ? 'active' : ''}`;
+            thumb.innerHTML = `<img src="${item.src}" alt="${item.title}">`;
+            thumb.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            galleryThumbs.appendChild(thumb);
+        });
+        
+        // Update slide info
+        function updateSlideInfo() {
+            slideInfo.innerHTML = `
+                <h3>${galleryData[currentSlide].title}</h3>
+                <p>${galleryData[currentSlide].desc}</p>
+            `;
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            currentSlide = index;
+            gallerySlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumb').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === currentSlide);
+            });
+            
+            updateSlideInfo();
+        }
+        
+        // Next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % galleryData.length;
+            goToSlide(currentSlide);
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + galleryData.length) % galleryData.length;
+            goToSlide(currentSlide);
+        }
+        
+        // Event listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        
+        // Auto slide change
+        let slideInterval = setInterval(nextSlide, 5000);
+        
+        // Pause auto slide on hover
+        gallerySlider.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        gallerySlider.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        
+        // Initialize
+        updateSlideInfo();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
